@@ -1,13 +1,18 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/js/all';
-import Layout from './Components/common/Layout';
+import Home from './pages/Home';
+import Clientes from './pages/Clientes';
 
 function App() {
   return (
-    <div className="App">
-      <Layout/>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/clientes" component={Clientes} />
+      </Switch>
+    </Router>
   );
 }
 
