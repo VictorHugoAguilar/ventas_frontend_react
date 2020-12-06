@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { ModalContext } from '../../context/modal/ModalContext';
 
 const FormCliente = () => {
 
     const { setShowModal } = useContext(ModalContext);
+    // const { registrarCliente, actualizarCliente, clienteActual, obtenerCliente } = useContext(ClienteContext);
+
 
     const cerrarModal = () => {
         console.log('cerrando modal...');
@@ -37,16 +39,33 @@ const FormCliente = () => {
     const handleOnSubmit = e => {
         e.preventDefault();
         console.log('enviando formulario...');
-        console.log(cliente);
-
+        
         //validar
         if (cliente.nombres.trim() === '' && cliente.apellidos.trim() === '' && cliente.email.trim() === '') {
             setMensaje('Los nombres, apellidos y el email son obligatorios.');
             return;
         }
+        
+        console.log(obtenerClienteAEnviar());
+
+        //obtener objeto a enviar
+        /*
+        if (clienteActual !== null) {
+            actualizarCliente(obtenerClienteAEnviar());
+        } else {
+            registrarCliente(obtenerClienteAEnviar());
+        }
+        */
 
         limpiarForm();
 
+    }
+
+    const obtenerClienteAEnviar = () => {
+        let clienteTemp = { ...cliente };
+        if (clienteTemp.direccion === "") delete clienteTemp.direccion;
+        if (clienteTemp.telefono === "") delete clienteTemp.telefono;
+        return clienteTemp;
     }
 
     return (

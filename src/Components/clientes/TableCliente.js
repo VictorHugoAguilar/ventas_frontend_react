@@ -1,26 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { ClienteContext } from '../../context/cliente/ClienteContext';
 import ItemCliente from './ItemCliente';
 
 const TableCliente = () => {
-    // eslint-disable-next-line  
-    const [clienteList, setClienteList] = useState([
-        {
-            "idCliente": 2,
-            "nombres": "victor hugo",
-            "apellidos": "aguilar aguilar",
-            "direccion": "diosa tanit 5 1D",
-            "telefono": "627100491",
-            "email": "victor@correo.com"
-        },
-        {
-            "idCliente": 3,
-            "nombres": "Paula Valeria",
-            "apellidos": "Rodriguez Alvarez",
-            "direccion": "diosa tanit 5 1D",
-            "telefono": "666595467",
-            "email": "paula@correo.com"
-        }
-    ]);
+
+    const { clientesList } = useContext(ClienteContext);
+
+    if (clientesList.length === 0) {
+        return (
+            <div class="notification is-warning is-light mt-4">
+                <center>
+                    <p>No existen datos</p>
+                </center>
+            </div>
+        );
+    }
 
     return (
         <div className="table-container">
@@ -36,7 +30,7 @@ const TableCliente = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clienteList?.map(( cliente, index) => <ItemCliente cliente={cliente} key={index} /> )}
+                    {clientesList?.map((cliente, index) => <ItemCliente cliente={cliente} key={index} />)}
                 </tbody>
             </table>
         </div>
