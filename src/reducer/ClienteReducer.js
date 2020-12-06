@@ -1,5 +1,6 @@
 import { ELIMINAR_CLIENTE, MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../Constantes/actionTypes';
 
+// eslint-disable-next-line
 export default (state, action) => {
 
     switch (action.type) {
@@ -42,6 +43,5 @@ export default (state, action) => {
 
         default:
             return state;
-
     }
 }
