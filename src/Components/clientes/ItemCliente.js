@@ -6,21 +6,20 @@ import { ModalContext } from '../../context/modal/ModalContext';
 const ItemCliente = ({ cliente }) => {
 
     const {  setShowModal, setModalTitle} = useContext(ModalContext);
-    const {  obtenerCliente } = useContext(ClienteContext);
-
-
+    const {  obtenerCliente, eliminarCliente } = useContext(ClienteContext);
 
     const modificarCliente = () => {
         console.log('modificando...');
 
         obtenerCliente(cliente);
-        
         setShowModal(true);
         setModalTitle('Editar Cliente');
     }
 
     const eliminandoCliente = () => {
         console.log('eliminando...');
+        
+        eliminarCliente(cliente.idCliente);
     }
 
     return (
@@ -37,7 +36,7 @@ const ItemCliente = ({ cliente }) => {
                 </button>
                 <button
                     className="button is-small is-danger"
-                    title="Eliminar"
+                    title="Eliminar" 
                     onClick={() => eliminandoCliente()}
                 >
                     <span className="icon is-small">

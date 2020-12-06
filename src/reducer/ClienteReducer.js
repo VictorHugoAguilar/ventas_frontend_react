@@ -1,4 +1,4 @@
-import { MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../Constantes/actionTypes';
+import { ELIMINAR_CLIENTE, MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../Constantes/actionTypes';
 
 export default (state, action) => {
 
@@ -24,14 +24,21 @@ export default (state, action) => {
                 clienteActual: action.payload
             }
 
-            case MODIFICAR_CLIENTE:
-                return {
-                    ...state,
-                    clientesList: state.clientesList.map(
-                        cliente => cliente.idCliente === action.payload.idCliente ?
-                            action.payload : cliente
-                    )
-                }
+        case MODIFICAR_CLIENTE:
+            return {
+                ...state,
+                clientesList: state.clientesList.map(
+                    cliente => cliente.idCliente === action.payload.idCliente ?
+                        action.payload : cliente
+                )
+            }
+
+        case ELIMINAR_CLIENTE:
+            return {
+                ...state,
+                clientesList: state.clientesList.filter( 
+                    cliente => cliente.idCliente !== action.payload )
+            }
 
         default:
             return state;
