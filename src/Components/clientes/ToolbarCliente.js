@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import { ClienteContext } from '../../context/cliente/ClienteContext';
 
 import { ModalContext } from '../../context/modal/ModalContext';
 
@@ -6,11 +7,13 @@ import { ModalContext } from '../../context/modal/ModalContext';
 const ToolbarCliente = () => {
 
     const { setModalTitle, setShowModal } = useContext(ModalContext);
+    const {  obtenerCliente  } = useContext(ClienteContext);
 
     const abrirModalCrear = () => {
         console.log('agregando ...');
         setModalTitle('Agregar nuevo cliente')
         setShowModal(true);
+        obtenerCliente(null);
     }
 
     return (
@@ -30,6 +33,5 @@ const ToolbarCliente = () => {
         </div>
     );
 }
-
 
 export default ToolbarCliente;

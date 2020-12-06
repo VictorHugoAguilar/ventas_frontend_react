@@ -1,10 +1,15 @@
-import React, { useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { ClienteContext } from '../../context/cliente/ClienteContext';
 import ItemCliente from './ItemCliente';
 
 const TableCliente = () => {
 
-    const { clientesList } = useContext(ClienteContext);
+    const { clientesList, obtenerClientes } = useContext(ClienteContext);
+
+    useEffect(() => {
+        obtenerClientes();
+        // eslint-disable-next-line
+    }, []);
 
     if (clientesList.length === 0) {
         return (
@@ -30,7 +35,11 @@ const TableCliente = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clientesList?.map((cliente, index) => <ItemCliente cliente={cliente} key={index} />)}
+                    {
+                        clientesList?.map(cliente => (
+                            <ItemCliente cliente={cliente} key={cliente.idCliente} />
+                        ))
+                    }
                 </tbody>
             </table>
         </div>

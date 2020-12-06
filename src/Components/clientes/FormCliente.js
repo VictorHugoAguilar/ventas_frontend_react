@@ -1,16 +1,42 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { ClienteContext } from '../../context/cliente/ClienteContext';
 import { ModalContext } from '../../context/modal/ModalContext';
 
 const FormCliente = () => {
 
-    const { setShowModal } = useContext(ModalContext);
-    // const { registrarCliente, actualizarCliente, clienteActual, obtenerCliente } = useContext(ClienteContext);
+    const clienteDefault = {
+        nombres: '',
+        apellidos: '',
+        direccion: '',
+        telefono: '',
+        email: ''
+    }
 
+    const { setShowModal } = useContext(ModalContext);
+    const { registrarCliente, clienteActual, actualizarCliente, obtenerCliente } = useContext(ClienteContext);
+
+
+    const [cliente, setCliente] = useState(clienteDefault);
+    const [mensaje, setMensaje] = useState(null);
+
+    useEffect(() => {
+        if (clienteActual !== null) {
+            setCliente({
+                ...clienteActual,
+                direccion: clienteActual.direccion  ? clienteActual.direccion : '',
+                telefono: clienteActual.telefono ? clienteActual.telefono : ''
+            });
+        } else {
+            setCliente(clienteDefault);
+        }
+        // eslint-disable-next-line
+    }, [clienteActual]);
 
     const cerrarModal = () => {
         console.log('cerrando modal...');
         limpiarForm();
         setShowModal(false);
+        obtenerCliente(null);
     }
 
     const handleChange = e => {
@@ -25,40 +51,25 @@ const FormCliente = () => {
         setCliente(clienteDefault);
     }
 
-    const clienteDefault = {
-        nombres: '',
-        apellidos: '',
-        direccion: '',
-        telefono: '',
-        email: ''
-    }
-
-    const [cliente, setCliente] = useState(clienteDefault);
-    const [mensaje, setMensaje] = useState(null);
-
     const handleOnSubmit = e => {
         e.preventDefault();
         console.log('enviando formulario...');
-        
+
         //validar
         if (cliente.nombres.trim() === '' && cliente.apellidos.trim() === '' && cliente.email.trim() === '') {
             setMensaje('Los nombres, apellidos y el email son obligatorios.');
             return;
         }
-        
+
         console.log(obtenerClienteAEnviar());
 
-        //obtener objeto a enviar
-        /*
         if (clienteActual !== null) {
             actualizarCliente(obtenerClienteAEnviar());
         } else {
             registrarCliente(obtenerClienteAEnviar());
         }
-        */
 
-        limpiarForm();
-
+        cerrarModal();
     }
 
     const obtenerClienteAEnviar = () => {

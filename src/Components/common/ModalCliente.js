@@ -1,6 +1,5 @@
 import React,  {useContext} from 'react'
 import { ModalContext } from '../../context/modal/ModalContext';
-import FormCliente from '../clientes/FormCliente';
 
 const ModalCliente = (props) => {
 
