@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ItemCliente from './ItemCliente';
 
 const TableCliente = () => {
+    // eslint-disable-next-line  
+    const [clienteList, setClienteList] = useState([
+        {
+            "idCliente": 2,
+            "nombres": "victor hugo",
+            "apellidos": "aguilar aguilar",
+            "direccion": "diosa tanit 5 1D",
+            "telefono": "627100491",
+            "email": "victor@correo.com"
+        },
+        {
+            "idCliente": 3,
+            "nombres": "Paula Valeria",
+            "apellidos": "Rodriguez Alvarez",
+            "direccion": "diosa tanit 5 1D",
+            "telefono": "666595467",
+            "email": "paula@correo.com"
+        }
+    ]);
 
     return (
         <div className="table-container">
@@ -16,26 +36,7 @@ const TableCliente = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <button className="button is-small is-info mr-1" title="Modificar">
-                                <span className="icon is-small">
-                                    <i className="fas fa-edit"></i>
-                                </span>
-                            </button>
-                            <button className="button is-small is-danger" title="Eliminar">
-                                <span className="icon is-small">
-                                    <i className="fas fa-trash-alt"></i>
-                                </span>
-                            </button>
-                        </td>
-                        <td>Victor</td>
-                        <td>Aguilar</td>
-                        <td>Diosa</td>
-                        <td>627100491</td>
-                        <td>victor@correo.com</td>
-                    </tr>
-
+                    {clienteList?.map(( cliente, index) => <ItemCliente cliente={cliente} key={index} /> )}
                 </tbody>
             </table>
         </div>

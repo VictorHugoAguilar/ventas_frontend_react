@@ -1,6 +1,8 @@
 import React from 'react';
 import TableCliente from '../Components/clientes/TableCliente';
+import ToolbarCliente from '../Components/clientes/ToolbarCliente';
 import Layout from '../Components/common/Layout';
+import ModalCliente from '../Components/common/ModalCliente';
 
 
 const Clientes = () => {
@@ -12,21 +14,12 @@ const Clientes = () => {
                     Clientes
                 </div>
                 <div className="box">
-                    <div className="container">
-                        <button className="button is-primary" title="Añadir nuevo registro">
-                            <span className="icon is-small">
-                                <i className="fas fa-plus"></i>
-                            </span>
-                            <span>
-                                Registrar Nuevo
-                            </span>
-                        </button>
-                    </div>
-
-                <TableCliente />
-                 
+                    <ToolbarCliente />
+                    <TableCliente />
                 </div>
             </div>
+
+            <ModalCliente />
         </Layout>
     );
 
