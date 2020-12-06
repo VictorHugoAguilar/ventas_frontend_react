@@ -1,13 +1,15 @@
 import React,  {useContext} from 'react'
 import { ModalContext } from '../../context/modal/ModalContext';
+import FormCliente from '../clientes/FormCliente';
 
 const ModalCliente = (props) => {
 
-    const { showModal, titleModal, setShowModal } = useContext(ModalContext);
+    const { showModal, modalTitle, setShowModal, setModalTitle} = useContext(ModalContext);
 
     const cerrarModal = () => {
         console.log('cerrando modal...');
         setShowModal(false);
+        setModalTitle('');
     }
 
     return (
@@ -15,7 +17,7 @@ const ModalCliente = (props) => {
             <div className="modal-background">
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p  className="modal-card-title"> {titleModal} </p>
+                        <p  className="modal-card-title"> {modalTitle} </p>
                         <button className="delete"
                             aria-label="close"
                             onClick={ () => cerrarModal() }
@@ -23,7 +25,7 @@ const ModalCliente = (props) => {
                         </button>
                     </header>
                     <section className="modal-card-body">
-                        Contenido
+                        {props.children}
                     </section>
                 </div>
             </div>

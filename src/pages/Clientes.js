@@ -1,4 +1,5 @@
 import React from 'react';
+import FormCliente from '../Components/clientes/FormCliente';
 import TableCliente from '../Components/clientes/TableCliente';
 import ToolbarCliente from '../Components/clientes/ToolbarCliente';
 import Layout from '../Components/common/Layout';
@@ -19,7 +20,9 @@ const Clientes = () => {
                 </div>
             </div>
 
-            <ModalCliente />
+            <ModalCliente>
+                <FormCliente /> 
+            </ModalCliente>
         </Layout>
     );
 

@@ -1,9 +1,16 @@
-import * as React from 'react';
+import React, {useContext} from 'react'
+import { ModalContext } from '../../context/modal/ModalContext';
+
 
 const ItemCliente = ({ cliente }) => {
 
+    const {  setShowModal, setModalTitle} = useContext(ModalContext);
+
+
     const modificarCliente = () => {
         console.log('modificando...');
+        setShowModal(true);
+        setModalTitle('Editar Cliente');
     }
 
     const eliminandoCliente = () => {
