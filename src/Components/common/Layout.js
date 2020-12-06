@@ -1,10 +1,12 @@
 import React from 'react';
+import { ModalContextProvider } from '../../context/modal/ModalContext';
 import Header from './Header';
 import Menu from './Menu';
 
 const Layout = (props) => {
 
     return (
+        <ModalContextProvider>
         <div>
             <Header />
             <br/>
@@ -19,6 +21,7 @@ const Layout = (props) => {
                 </div>
             </div>
         </div>
+        </ModalContextProvider>
     );
 }
 
